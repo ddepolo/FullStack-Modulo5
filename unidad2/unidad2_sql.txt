@@ -1,0 +1,203 @@
+***** (1) **********
+mysql> SELECT nombre, trabajo FROM empleados;
++-----------+----------------------------+
+| nombre    | trabajo                    |
++-----------+----------------------------+
+| Juan      | Programador Senior         |
+| Gonzalo   | Programador Senior         |
+| Ana       | Desarrollador Web          |
+| Maria     | Desarrollador Web          |
+| Alfred    | Programador                |
+| Juan      | Programador                |
+| Eduardo   | Programador                |
+| Alejandro | Programador                |
+| Hernan    | Especialista Multimedia    |
+|       Pablo    | Especialista Multimedia    |
+|       Arturo   | Especialista Multimedia    |
+|       Jimena   | Diseñador Web              |
+|       Roberto  | Administrador de sistemas  |
+|       Daniel   | Administrador de sistemas  |
+|       Miguel   | Ejecutivo de Ventas Senior |
+|       Monica   | Ejecutivo de ventas        |
+|       Alicia   | Ejecutivo de ventas        |
+|       Jose     | Ejecutivo de ventas        |
+|       Sabrina  | Gerente de Soporte tecnico |
+|       Pedro    | Gerente de finanzas        |
+|       Mariano  | Presidente                 |
++-----------+----------------------------+
+21 rows in set (0,00 sec)
+
+***** (2) **********
+mysql> SELECT nombre, edad FROM empleados;
++-----------+------+
+| nombre    | edad |
++-----------+------+
+| Juan      |   32 |
+| Gonzalo   |   32 |
+| Ana       |   27 |
+| Maria     |   26 |
+| Alfred    |   31 |
+| Juan      |   36 |
+| Eduardo   |   25 |
+| Alejandro |   32 |
+| Hernan    |   33 |
+|       Pablo    |   43 |
+|       Arturo   |   32 |
+|       Jimena   |   32 |
+|       Roberto  |   35 |
+|       Daniel   |   34 |
+|       Miguel   |   36 |
+|       Monica   |   30 |
+|       Alicia   |   27 |
+|       Jose     |   27 |
+|       Sabrina  |   32 |
+|       Pedro    |   36 |
+|       Mariano  |   28 |
++-----------+------+
+21 rows in set (0,00 sec)
+
+
+***** (3) **********
+mysql> SELECT nombre, edad FROM empleados WHERE trabajo LIKE "Programador%";
++-----------+------+
+| nombre    | edad |
++-----------+------+
+| Juan      |   32 |
+| Gonzalo   |   32 |
+| Alfred    |   31 |
+| Juan      |   36 |
+| Eduardo   |   25 |
+| Alejandro |   32 |
++-----------+------+
+6 rows in set (0,00 sec)
+
+
+***** (4) **********
+mysql> SELECT nombre FROM empleados WHERE edad > "30" ;
++-----------+
+| nombre    |
++-----------+
+| Juan      |
+| Gonzalo   |
+| Alfred    |
+| Juan      |
+| Alejandro |
+| Hernan    |
+|       Pablo    |
+|       Arturo   |
+|       Jimena   |
+|       Roberto  |
+|       Daniel   |
+|       Miguel   |
+|       Sabrina  |
+|       Pedro    |
++-----------+
+14 rows in set (0,00 sec)
+
+
+***** (5) **********
+mysql> SELECT apellido, mail FROM empleados WHERE nombre LIKE "%Juan%" ;
++----------+-----------------------+
+| apellido | mail                  |
++----------+-----------------------+
+| Hagan    | juan_hagan@bignet.com |
+| Agüero   | juan@bignet.com       |
++----------+-----------------------+
+2 rows in set (0,00 sec)
+
+
+***** (6) **********
+mysql> SELECT nombre FROM empleados WHERE trabajo = "Programador" OR trabajo = "Desarrollador Web";
++-----------+
+| nombre    |
++-----------+
+| Ana       |
+| Maria     |
+| Alfred    |
+| Juan      |
+| Eduardo   |
+| Alejandro |
++-----------+
+6 rows in set (0,01 sec)
+
+***** (7) **********
+mysql> SELECT id_emp, nombre, apellido, trabajo FROM empleados WHERE id_emp BETWEEN "15" AND "20";
++--------+----------+----------+----------------------------+
+| id_emp | nombre   | apellido | trabajo                    |
++--------+----------+----------+----------------------------+
+|     15 |      Miguel  | Harper   | Ejecutivo de Ventas Senior |
+|     16 |      Monica  | Sanchez  | Ejecutivo de ventas        |
+|     17 |      Alicia  | Simlai   | Ejecutivo de ventas        |
+|     18 |      Jose    | Iriarte  | Ejecutivo de ventas        |
+|     19 |      Sabrina | Allende  | Gerente de Soporte tecnico |
+|     20 |      Pedro   | Campeon  | Gerente de finanzas        |
++--------+----------+----------+----------------------------+
+6 rows in set (0,00 sec)
+
+***** (8) **********
+mysql> SELECT nombre FROM empleados WHERE salario < "80000";
++-----------+
+| nombre    |
++-----------+
+| Alfred    |
+| Alejandro |
+|       Arturo   |
+|       Alicia   |
+|       Jose     |
++-----------+
+5 rows in set (0,00 sec)
+
+***** (9) **********
+mysql> SELECT nombre FROM empleados WHERE salario BETWEEN "75000" AND "90000";
++---------+
+| nombre  |
++---------+
+| Ana     |
+| Maria   |
+| Alfred  |
+| Juan    |
+| Eduardo |
+| Hernan  |
+|       Pablo  |
+|       Arturo |
+|       Monica |
++---------+
+9 rows in set (0,00 sec)
+
+
+***** (10) **********
+mysql> SELECT nombre FROM empleados WHERE apellido LIKE "s%";
++---------+
+| nombre  |
++---------+
+| Eduardo |
+|       Pablo  |
+|       Monica |
+|       Alicia |
++---------+
+4 rows in set (0,00 sec)
+
+***** (11) **********
+mysql> SELECT nombre FROM empleados WHERE nombre LIKE "%l";
++---------+
+| nombre  |
++---------+
+|       Daniel |
+|       Miguel |
++---------+
+2 rows in set (0,00 sec)
+
+
+***** (12) **********
+mysql> INSERT INTO empleados (id_emp, nombre, apellido, trabajo, edad, salario, mail) VALUES ("22", "Francisco", "Perez", "Programador", "26", "90000", "francisco@bignet.com");
+Query OK, 1 row affected (0,00 sec)
+
+***** (13) **********
+mysql> DELETE FROM empleados WHERE nombre = "Hernan" AND apellido = "Rosso" LIMIT 1;
+Query OK, 1 row affected (0,00 sec)
+
+***** (14) **********
+mysql> UPDATE empleados SET salario = "90000" WHERE id_emp = "14";
+Query OK, 1 row affected (0,00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
