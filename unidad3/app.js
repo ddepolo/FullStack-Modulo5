@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 require('dotenv').config();
+
+//importamos pool db
 var pool = require('./modelos/db');
 
 var indexRouter = require('./routes/index');
@@ -26,9 +28,24 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
-  pool.query("SELECT nombre FROM empleados ORDER BY nombre DESC").then(function(result){
-    console.log(result);
-  });
+
+
+
+
+
+//consulta DB
+pool.query("SELECT nombre FROM empleados ORDER BY nombre DESC").then(function(result){
+  console.log(result);
+});
+
+
+
+
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
